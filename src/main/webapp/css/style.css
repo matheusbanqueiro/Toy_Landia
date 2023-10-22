@@ -1,0 +1,40 @@
+:root {
+    --primary: #FDC500;
+    --third: #510087;
+    --fourth: #3D0066;
+    --fifth: #F440C7;
+    --complement1: #F4F4F4;
+    --complement2: #181818;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    font-family: var(--font-family);
+}
+ 
+.buttons {
+    font-weight: 600;
+    background-color: var(--third);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttons:hover {
+    background-color: var(--primary);
+    color: var(--fourth);
+}
+
+.links{
+	color: var(--third);
+}
+.links:hover{
+	 transition: color 0.3s ease;
+	color: var(--fifth);
+}
+
+.links-bg{
+	background-color: var(--third);
+}
+.links-bg:hover{
+	 transition: color 0.3s ease;
+	background-color: var(--fifth);
+}
