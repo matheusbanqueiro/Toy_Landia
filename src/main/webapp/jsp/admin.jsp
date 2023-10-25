@@ -109,8 +109,9 @@
 %>
     <div class="mx-auto w-3/4">     
             <div class="w-1/2">
-            <h2 class="text-lg font-semibold mb-4">Quantidade Brinquedos por Categoria</h2>
+            <h2 style="color: var(--third);" class="text-lg text-center font-semibold mb-4">Quantidade Brinquedos por Categoria</h2>
                 <canvas id="graficoCategorias" class="shadow-lg rounded-lg"></canvas>
+                 <canvas id="meuGrafico"></canvas>
             </div>          
         </div>
     </div>
@@ -153,7 +154,42 @@
             options: options
         });
     </script>
+<script>
+        // Dados do gráfico (substitua com os seus dados)
+        var data = {
+            labels: ['Marca 1', 'Marca 2', 'Marca 3', 'Marca 4'],
+            datasets: [{
+                label: 'Quantidade',
+                data: [10, 20, 15, 30],
+                backgroundColor: ['blue', 'green', 'red', 'orange']
+            }]
+        };
 
+        // Configuração do gráfico
+        var config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Obtém a referência para a div de contêiner do gráfico
+        var graficoContainer = document.getElementById('grafico-container');
+
+        // Cria um novo elemento de gráfico dentro da div de contêiner
+        var canvas = document.createElement('canvas');
+        canvas.id = 'meuGrafico';
+        graficoContainer.appendChild(canvas);
+
+        // Cria o gráfico
+        var ctx = document.getElementById('meuGrafico').getContext('2d');
+        var meuGrafico = new Chart(ctx, config);
+    </script>
 <% } else { %>
 	<div class="flex justify-center items-center ">
         <div style="border: 0.2px solid var(--third);" class="rounded-lg bg-white shadow-lg p-8 max-w-md text-center">
@@ -184,7 +220,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+        <div class="border bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
             <button type="button" id="confirmDeleteButton" class="w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-700 sm:ml-3 sm:w-auto transition-transform transform hover:translate-y-1">Confirmar</button>
             <button type="button" onclick="fecharModalExclusao()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition-transform transform hover:translate-y-1">Cancelar</button>
         </div>
@@ -299,7 +335,7 @@
     <div class="mb-4 grid grid-cols-2 gap-4">
         <div class="flex items-center">
 	        <div class="">
-				   	 <label style="color: var(--fourth);" for="codigo" class="block text-sm font-semibold mb-2">Código (8 números)</label>
+				   	 <label style="color: var(--fourth);" for="codigo" class="block text-sm font-semibold mb-2">Código (8 números) <span class="text-red-400">*</span></label>
 				     
 				    
 				     <input style="color: var(--fifth);" type="text" id="codigo" name="codigo" required
@@ -311,7 +347,7 @@
 
 
         <div>
-            <label style="color: var(--fourth);" for="nome" class="block text-sm font-semibold mb-2">Nome</label>
+            <label style="color: var(--fourth);" for="nome" class="block text-sm font-semibold mb-2">Nome <span class="text-red-400">*</span></label>
             <input style="color: var(--fifth);" type="text" id="nome" name="nome" required
                 class="w-full px-3 py-2 border rounded-lg border-purple-600 focus:outline-none focus:border-yellow-500">
         </div>
@@ -319,7 +355,7 @@
 
     <div class="flex mb-4 gap-4">
         <div class="w-full ">
-            <label style="color: var(--fourth);" for="categoria" class="block text-sm font-semibold text-gray-600 mb-2">Categoria</label>
+            <label style="color: var(--fourth);" for="categoria" class="block text-sm font-semibold text-gray-600 mb-2">Categoria <span class="text-red-400">*</span></label>
             <%
 				BrinquedoDAO daoCategoria = new BrinquedoDAO();
 				List<String> categorias = daoCategoria.listarCategorias();
@@ -342,7 +378,7 @@
         </div>
 
         <div class="hidden" id="campoCategoria">
-            <label style="color: var(--fourth);" for="novaCategoria" class="block text-sm font-semibold text-gray-600 mb-2">Nova Categoria</label>
+            <label style="color: var(--fourth);" for="novaCategoria" class="block text-sm font-semibold text-gray-600 mb-2">Nova Categoria </label>
             <input style="color: var(--fifth);" type="text" id="novaCategoria" name="novaCategoria"
                 class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500">
         </div>
@@ -350,13 +386,13 @@
 
     <div class="mb-4 grid grid-cols-2 gap-4">
         <div>
-            <label style="color: var(--fourth);" for="marca" class="block text-sm font-semibold text-gray-600 mb-2">Marca</label>
+            <label style="color: var(--fourth);" for="marca" class="block text-sm font-semibold text-gray-600 mb-2">Marca <span class="text-red-400">*</span></label>
             <input style="color: var(--fifth);" type="text" id="marca" name="marca" required
                 class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500">
         </div>
 
         <div>
-		    <label style="color: var(--fourth);" for="valor" class="block text-sm font-semibold text-gray-600 mb-2">Valor</label>
+		    <label style="color: var(--fourth);" for="valor" class="block text-sm font-semibold text-gray-600 mb-2">Valor <span class="text-red-400">*</span></label>
 		    <input style="color: var(--fifth)" type="text" id="valor" name="valor" required
 		        class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500" 
 		        >

@@ -81,20 +81,26 @@
 		</div>
 	</nav>
 	
-	<section style="background-color: var(--third);" class="py-8">
-        <div class="container px-4 flex ">
-            <div class="items-center">
-                
-                    <img src="../imgs/toylandia1.png" alt="JavaSchool" class=" mx-auto">
-                </div>
-    
-                <div class="text-right">
-                    <h2 class="text-3xl font-bold text-white mb-4">Sobre nÃ³s</h2>
-                    <p class="text-white leading-relaxed text-md">
-                     Toylandia Ã© muito mais do que apenas um catÃ¡logo de presentes; somos curadores apaixonados de momentos felizes. Fundada por amantes de brinquedos e entusiastas de presentes, nossa missÃ£o Ã© proporcionar alegria e felicidade a pessoas de todas as idades. Com anos de experiÃªncia e uma paixÃ£o compartilhada pela magia dos presentes, nossa equipe cuidadosamente seleciona e apresenta os produtos mais encantadores e Ãºnicos que vocÃª encontrarÃ¡.</p>
-                </div>
-                
-    </section>
+<section style="background-color: var(--third);" class="py-8">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/2 md:pr-4">
+            <img src="../imgs/pessoas.png" alt="Toylandia" class="mx-auto md:mx-0 max-w-xs md:max-w-full">
+        </div>
+
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h2 class="text-3xl font-bold text-white mb-4">Sobre Nós</h2>
+            <p class="text-white leading-relaxed text-md">
+                Toylandia é muito mais do que apenas um catálogo de presentes; somos apaixonados curadores de momentos felizes. Fundada por entusiastas de brinquedos e amantes de presentes, nossa missão é proporcionar alegria e felicidade a pessoas de todas as idades. Com anos de experiência e uma paixão compartilhada pela magia dos presentes, nossa equipe cuidadosamente seleciona e apresenta os produtos mais encantadores e únicos que você encontrará.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
 	
 	
    	<div style="color: var(--third);" class="mt-10 text-2xl font-semibold text-center mb-10">Nossa Equipe</div>

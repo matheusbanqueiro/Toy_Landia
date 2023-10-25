@@ -214,7 +214,23 @@ public class BrinquedoDAO {
 	            ConnectionFactory.closeConnection(conn, ps, rs);
 	        }
 	    }
-
+	 public Map<String, Integer> contarBrinquedosPorMarca() throws Exception {
+	        try {
+	            ps = conn.prepareStatement("SELECT categoria, COUNT(*) as quantidade FROM brinquedo GROUP BY marca");
+	            rs = ps.executeQuery();
+	            Map<String, Integer> categoriasQuantidade = new HashMap<>();
+	            while (rs.next()) {
+	                String categoria = rs.getString("categoria");
+	                int quantidade = rs.getInt("quantidade");
+	                categoriasQuantidade.put(categoria, quantidade);
+	            }
+	            return categoriasQuantidade;
+	        } catch (SQLException sqle) {
+	            throw new Exception(sqle);
+	        } finally {
+	            ConnectionFactory.closeConnection(conn, ps, rs);
+	        }
+	    }
 
 }
 
