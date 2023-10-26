@@ -11,7 +11,7 @@ CREATE TABLE `administracao` (
   `login` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 CREATE TABLE `brinquedo` (
   `codigo` int NOT NULL,
   `nome` varchar(255) NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE `brinquedo` (
   `marca` varchar(255) DEFAULT NULL,
   `valor` float DEFAULT NULL,
   `descricao` text,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 INSERT INTO `administracao` (`nome`, `login`, `senha`) VALUES
   ('Jadir Custódio', 'jadir@toylandia', '2,5'),
-  ('Carlos Eduardo', 'matheus@toylandia', '29936489'),
+  ('Carlos Eduardo', 'carlos@toylandia', '29936489'),
   ('Felipe Pires', 'felipe@toylandia', '29957478'),
   ('Matheus Banqueiro', 'matheus@toylandia', '29960231'),
   ('Renan Miguel', 'renan@toylandia', '29316561'),

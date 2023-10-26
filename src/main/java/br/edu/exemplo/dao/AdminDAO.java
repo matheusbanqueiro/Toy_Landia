@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import br.edu.exemplo.model.Admin;
 import br.edu.exemplo.util.ConnectionFactory;
 
 public class AdminDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	private Admin admin;
 
 	public AdminDAO() throws Exception {
 		try {

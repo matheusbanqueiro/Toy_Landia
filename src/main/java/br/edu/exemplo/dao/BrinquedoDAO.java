@@ -1,7 +1,6 @@
 package br.edu.exemplo.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,6 @@ public class BrinquedoDAO {
 	private PreparedStatement ps;  
 	private ResultSet rs;  
 	
-	private Brinquedo brinquedo;
 
 	public BrinquedoDAO() throws Exception {
 		// chama a classe ConnectionFactory e estabele uma conexao

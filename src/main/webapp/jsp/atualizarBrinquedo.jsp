@@ -92,17 +92,19 @@
 					Atual</label> <img src="<%=brinquedo.getImage()%>" alt="Imagem Atual"
 					class=" w-40 h-40 mb-2">
 	</div>
-      <div class="mb-4  rounded-lg">
-        <label style="color: var(--fourth);" for="image" class="block text-sm font-semibold text-gray-600 mb-2">Nova imagem</label>
-        <div style="color: var(--fourth);" id="dropzone" class="p-4  bg-white border border-purple-600 rounded-lg cursor-pointer gap-4 flex justify-center items-center dropzone">
-           <svg width="30" height="30" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-			  <path d="M1 13L1 14C1 15.6569 2.34315 17 4 17L14 17C15.6569 17 17 15.6569 17 14L17 13M13 9L9 13M9 13L5 9M9 13L9 1" stroke="#F440C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-            Arraste uma imagem aqui ou clique para selecionar.
-        </div>
-        <input style="display: none;" type="file" id="image" name="image" accept="image/*">
-        <div style="color: var(--third);" id="file-name" class="text-gray-600 text-sm mt-2"></div>
+	<input type="hidden" name="imagemAtual" value="<%=brinquedo.getImage()%>">
+     <div class="mb-4 rounded-lg">
+    <label style="color: var(--fourth);" for="image" class="block text-sm font-semibold text-gray-600 mb-2">Nova imagem</label>
+    <div style="color: var(--fourth);" id="dropzone" class="p-4 bg-white border border-purple-600 rounded-lg cursor-pointer gap-4 flex justify-center items-center dropzone">
+        <svg width="30" height="30" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 13L1 14C1 15.6569 2.34315 17 4 17L14 17C15.6569 17 17 15.6569 17 14L17 13M13 9L9 13M9 13L5 9M9 13L9 1" stroke="#F440C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Arraste uma imagem aqui ou clique para selecionar.
     </div>
+    <input style="display: none;" type="file" id="image" name="image" accept="image/*">
+    <div style="color: var(--third);" id="file-name" class="text-gray-600 text-sm mt-2"></div>
+</div>
+
     	<div class="gap-8 flex flex-col">
 			<button type="submit" value="Enviar"
 				class="text-white py-2 px-4 rounded-full buttons w-full">Editar
@@ -110,6 +112,6 @@
 				<a href="jsp/admin.jsp#listagem" class=" text-center w-full text-white links rounded-lg">Voltar à administração</a>
 		</div>
 		</form>
-	
+	<script src="js/admin/uploadImage.js"></script>
 </body>
 </html>
