@@ -1,9 +1,6 @@
 DROP DATABASE IF EXISTS lojaBrinquedos;
 CREATE DATABASE IF NOT EXISTS lojaBrinquedos;
 
-DROP TABLE IF EXISTS `brinquedo`;
-DROP TABLE IF EXISTS `administracao`;
-
 use lojaBrinquedos;
 CREATE TABLE `administracao` (
   `id` int NOT NULL AUTO_INCREMENT,
