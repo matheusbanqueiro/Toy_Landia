@@ -11,7 +11,7 @@ This project uses lot of stuff as:
 📌 [MySQL](https://www.mysql.com/) </br>
 📌 [MySQL Workbench](https://www.mysql.com/products/workbench/) </br>
 📌 [Eclipse JEE](https://www.eclipse.org/downloads/packages/release/kepler/sr2/eclipse-ide-java-ee-developers) </br>
-📌 [Java](https://docs.oracle.com/en/java/) </br>
+📌 [Java JEE](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2023-09/R/eclipse-inst-jre-win64.exe) </br>
 📌 [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) </br>
 
 Enter the ConnectionFactory and put your mysql login and password:
