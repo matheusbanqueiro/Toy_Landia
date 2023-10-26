@@ -27,43 +27,44 @@ public class ServletBrinquedo extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		try {
 			if (cmd.equals("incluir") || cmd.equals("atualizar")) {
-			    String uri = request.getRequestURL().toString();
-			    String baseURL = uri.substring(0, uri.length() - request.getRequestURI().length()) + request.getContextPath();
+				String uri = request.getRequestURL().toString();
+				String baseURL = uri.substring(0, uri.length() - request.getRequestURI().length())
+						+ request.getContextPath();
 
-			    Part file = request.getPart("image");
+				Part file = request.getPart("image");
 
-			    String imageFileName = file.getSubmittedFileName();
+				String imageFileName = file.getSubmittedFileName();
 
-			    if (imageFileName != null && !imageFileName.isEmpty()) {
-			        brinquedo.setImage(baseURL + "/imgs/" + imageFileName);
-			        String uploadFolder = getServletContext().getRealPath("/") + "imgs/" + imageFileName;
-			        System.out.println(uploadFolder);
-			        try {
-			            FileOutputStream fos = new FileOutputStream(uploadFolder);
-			            InputStream is = file.getInputStream();
-			            byte[] data = new byte[is.available()];
-			            is.read(data);
-			            fos.write(data);
-			            fos.close();
-			        } catch (Exception e) {
-			            e.printStackTrace();
-			        }
-			    } else {
-			    	 if (request.getParameter("imagemAtual") != null) {
-			             brinquedo.setImage(request.getParameter("imagemAtual"));
-			         } else {
-			        	 brinquedo.setImage("http://localhost:8080/toylandia/imgs/default1.png");
-			         }
-			    }
+				if (imageFileName != null && !imageFileName.isEmpty()) {
+					brinquedo.setImage(baseURL + "/imgs/" + imageFileName);
+					String uploadFolder = getServletContext().getRealPath("/") + "imgs/" + imageFileName;
+					System.out.println(uploadFolder);
+					try {
+						FileOutputStream fos = new FileOutputStream(uploadFolder);
+						InputStream is = file.getInputStream();
+						byte[] data = new byte[is.available()];
+						is.read(data);
+						fos.write(data);
+						fos.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					if (request.getParameter("imagemAtual") != null) {
+						brinquedo.setImage(request.getParameter("imagemAtual"));
+					} else {
+						brinquedo.setImage("http://localhost:8080/toylandia/imgs/default1.png");
+					}
+				}
 
-			    brinquedo.setCodigo(Integer.parseInt(request.getParameter("codigo")));
-			    brinquedo.setNome(request.getParameter("nome"));
-			    brinquedo.setCategoria(request.getParameter("categoria"));
-			    brinquedo.setMarca(request.getParameter("marca"));
-			    brinquedo.setValor(Float.parseFloat(request.getParameter("valor")));
-			    brinquedo.setDescricao(request.getParameter("descricao"));
+				brinquedo.setCodigo(Integer.parseInt(request.getParameter("codigo")));
+				brinquedo.setNome(request.getParameter("nome"));
+				brinquedo.setCategoria(request.getParameter("categoria"));
+				brinquedo.setMarca(request.getParameter("marca"));
+				brinquedo.setValor(Float.parseFloat(request.getParameter("valor")));
+				brinquedo.setDescricao(request.getParameter("descricao"));
 			} else {
-			    brinquedo.setCodigo(Integer.parseInt(request.getParameter("codigo")));
+				brinquedo.setCodigo(Integer.parseInt(request.getParameter("codigo")));
 			}
 
 		} catch (Exception e) {
@@ -91,24 +92,22 @@ public class ServletBrinquedo extends HttpServlet {
 				brinquedo = dao.procurarBrinquedo(brinquedo.getCodigo());
 				request.getSession(true).setAttribute("brinquedo", brinquedo);
 				request.getRequestDispatcher("jsp/atualizarBrinquedo.jsp").forward(request, response);
-			} 
+			}
 
-				else if (cmd.equalsIgnoreCase("atualizar")) {
+			else if (cmd.equalsIgnoreCase("atualizar")) {
 				dao.atualizar(brinquedo);
 				response.sendRedirect("jsp/admin.jsp#listagem");
-			} 
+			}
 
-				else if (cmd.equalsIgnoreCase("con")) {
+			else if (cmd.equalsIgnoreCase("con")) {
 				brinquedo = dao.procurarBrinquedo(brinquedo.getCodigo());
 				request.getSession(true).setAttribute("brinquedo", brinquedo);
 				request.getRequestDispatcher("jsp/brinquedo.jsp").forward(request, response);
 			} else if (cmd.equalsIgnoreCase("con2")) {
-        	    brinquedo = dao.procurarBrinquedo(brinquedo.getCodigo());
-        	    request.getSession(true).setAttribute("brinquedo", brinquedo);
-        	    request.getRequestDispatcher("jsp/previewToy.jsp").forward(request, response);
-        	}
-
-				else if (cmd.equalsIgnoreCase("exc")) {
+				brinquedo = dao.procurarBrinquedo(brinquedo.getCodigo());
+				request.getSession(true).setAttribute("brinquedo", brinquedo);
+				request.getRequestDispatcher("jsp/previewToy.jsp").forward(request, response);
+			} else if (cmd.equalsIgnoreCase("exc")) {
 				brinquedo = dao.procurarBrinquedo(brinquedo.getCodigo());
 				request.getSession(true).setAttribute("brinquedo", brinquedo);
 				dao.excluir(brinquedo);
