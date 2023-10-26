@@ -2,7 +2,7 @@
 
 
 
-# Toy landia 🧸👶
+# Toy landia 🎁👶
 
 This project uses lot of stuff as:
 
