@@ -9,8 +9,8 @@ public class ConnectionFactory {
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-						String login = "root";
-			String senha = "Matheus@2004";
+			String login = "root";
+			String senha = "Sua senha do banco de dados aqui";
 			String url = "jdbc:mysql://localhost:3306/lojaBrinquedos";
 
 			return DriverManager.getConnection(url,login,senha);
