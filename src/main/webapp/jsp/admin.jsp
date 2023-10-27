@@ -3,6 +3,7 @@
         <%@ page import="java.util.List" %>
             <%@ page import="br.edu.exemplo.dao.BrinquedoDAO" %>
                 <%@ page import="java.util.Map" %>
+                
                     <!DOCTYPE html>
                     <html lang="pt-br">
 
@@ -146,18 +147,17 @@
 
                         <!--Dashboard Brinquedo-->
 
-                        <div id="dashboard" class="mt-10 ">
+                        <div id="dashboard" class="mt-10  ">
                             <% BrinquedoDAO brinquedoDAO=new BrinquedoDAO(); Map<String, Integer> categoriasQuantidade =
                                 brinquedoDAO.contarBrinquedosPorCategoria();
 
                                 if (categoriasQuantidade != null && !categoriasQuantidade.isEmpty()) {
                                 %>
-                                <div class="mx-auto w-3/4">
+                                <div class="mx-auto w-3/4 ">
                                     <div class="w-1/2">
                                         <h2 style="color: var(--third);" class="text-lg text-center font-semibold mb-4">
                                             Quantidade Brinquedos por Categoria</h2>
-                                        <canvas id="graficoCategorias" class="shadow-lg rounded-lg"></canvas>
-                                        <canvas id="meuGrafico"></canvas>
+                                        <canvas id="graficoCategorias" class=" shadow-lg rounded-lg"></canvas>
                                     </div>
                                 </div>
                         </div>
@@ -322,8 +322,7 @@
                                                     <td class="px-6 py-4 text-center whitespace-nowrap">
                                                         <%=brinquedo.getMarca()%>
                                                     </td>
-                                                    <td class="px-6 py-4 text-center whitespace-nowrap">R$
-                                                        <%=brinquedo.getValor()%>
+                                                    <td class="px-6 py-4 text-center whitespace-nowrap valor-brinquedo" data-valor="<%=brinquedo.getValor()%>">
                                                     </td>
                                                     <td class="px-2 py-4 text-center whitespace-nowrap">
                                                         <div class="justify-center text-center flex">
@@ -455,12 +454,13 @@
                                             </div>
 
                                             <div>
-                                                <label style="color: var(--fourth);" for="valor"
+                                                <label style="color: var(--fourth);" for="troll"
                                                     class="block text-sm font-semibold text-gray-600 mb-2">Valor <span
                                                         class="text-red-400">*</span></label>
-                                                <input style="color: var(--fifth)" type="text" id="valor" name="valor"
-                                                    required
+                                                <input style="color: var(--fifth)" type="text"  id="troll"
+                                                    
                                                     class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500" oninput="formatarValor(event)">
+                                            <input type="hidden" id="valor" name="valor" id="valorSemFormatacao" name="valorSemFormatacao" value="" required>
                                             </div>
 											
                                         </div>
@@ -515,7 +515,7 @@
                                 <script src="../js/admin/uploadImage.js"></script>
                                 <script src="../js/admin/formatarTabela.js"></script>
 								<script src="../js/formatValue.js"></script>
-
+								<script src="../js/admin/formatValueScreen.js"></script>
 
 
                     </body>

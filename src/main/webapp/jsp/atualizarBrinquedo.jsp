@@ -80,12 +80,13 @@
 				</div>
 
 				<div>
-					<label style="color: var(--fourth);" for="valor"
-						class="block text-sm font-semibold text-gray-600 mb-2">Valor</label>
-					<input style="color: var(--fifth)" type="text" id="valor" name="valor"
-						value="<%=brinquedo.getValor()%>"
-						class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500"  oninput="formatarValor(event)">
-				</div>
+                     <label style="color: var(--fourth);" for="troll"
+                         class="block text-sm font-semibold text-gray-600 mb-2">Valor</label>
+                              <input style="color: var(--fifth)" type="text"  id="troll" value="<%=brinquedo.getValor()%>"
+                                                    
+                              	class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500" oninput="formatarValor(event)">
+                                <input type="hidden" id="valor" name="valor" id="valorSemFormatacao" name="valorSemFormatacao" value="" required>
+                </div>
 				
 			</div>
 
