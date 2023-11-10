@@ -85,7 +85,7 @@
                               <input style="color: var(--fifth)" type="text"  id="troll" value="<%=brinquedo.getValor()%>"
                                                     
                               	class="w-full px-3 py-2 border border-purple-600 rounded-lg focus:outline-none focus:border-yellow-500" oninput="formatarValor(event)">
-                                <input type="hidden" id="valor" name="valor" id="valorSemFormatacao" name="valorSemFormatacao" value="" required>
+                                <input type="hidden" id="valor" name="valor" id="valorSemFormatacao" name="valorSemFormatacao" value="" >
                 </div>
 				
 			</div>
