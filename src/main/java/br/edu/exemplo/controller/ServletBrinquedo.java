@@ -63,7 +63,7 @@ public class ServletBrinquedo extends HttpServlet {
 				brinquedo.setMarca(request.getParameter("marca"));
 				brinquedo.setValor(Float.parseFloat(request.getParameter("valor")));
 				brinquedo.setDescricao(request.getParameter("descricao"));
-			} else {
+				} else {
 				brinquedo.setCodigo(Integer.parseInt(request.getParameter("codigo")));
 			}
 

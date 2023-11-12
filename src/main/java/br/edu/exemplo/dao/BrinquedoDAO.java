@@ -51,34 +51,66 @@ public class BrinquedoDAO {
 	        throw new Exception("Erro ao inserir dados " + sqle);
 	    }
 	}
+	private String obterDescricaoAtualDoBancoDeDados(int codigo) throws Exception {
+	    String descricaoAtual = null;
+
+	    try (Connection conn = ConnectionFactory.getConnection();
+	         PreparedStatement ps = conn.prepareStatement("SELECT descricao FROM brinquedo WHERE codigo=?")
+	    ) {
+	        ps.setInt(1, codigo);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            descricaoAtual = rs.getString("descricao");
+	        }
+	    }
+
+	    return descricaoAtual;
+	}
 
 	public void atualizar(Brinquedo brinquedo) throws Exception {
 	    if (brinquedo == null)
 	        throw new Exception("O valor passado não pode ser nulo");
-	    
+
 	    try {
 	        String SQL;
 	        if (brinquedo.getImage() != null && !brinquedo.getImage().isEmpty()) {
-	            SQL = "UPDATE brinquedo SET nome=?, categoria=?, valor=?, marca=?, descricao=?, image=? WHERE codigo=?";
+	            SQL = "UPDATE brinquedo SET nome=?, categoria=?, marca=?, descricao=?, valor=?, image=? WHERE codigo=?";
 	        } else {
-	            SQL = "UPDATE brinquedo SET nome=?, categoria=?, valor=?, marca=?, descricao=? WHERE codigo=?";
+	            SQL = "UPDATE brinquedo SET nome=?, categoria=?, marca=?, descricao=?, valor=? WHERE codigo=?";
 	        }
-	        
+
 	        ps = conn.prepareStatement(SQL);
-	        
+
 	        ps.setString(1, brinquedo.getNome());
 	        ps.setString(2, brinquedo.getCategoria());
-	        ps.setFloat(3, brinquedo.getValor());
-	        ps.setString(4, brinquedo.getMarca());
-	        ps.setString(5, brinquedo.getDescricao());
-	        
+	        ps.setString(3, brinquedo.getMarca());
+
+	        // Verificar se o campo de descrição no objeto Brinquedo é nulo
+	        if (brinquedo.getDescricao() != null) {
+	            ps.setString(4, brinquedo.getDescricao());
+	        } else {
+	            // Se for nulo, obter a descrição atual do banco de dados
+	            String descricaoAtual = obterDescricaoAtualDoBancoDeDados(brinquedo.getCodigo());
+	            ps.setString(4, descricaoAtual);
+	        }
+
+	        // Verificar se o campo de valor no objeto Brinquedo é diferente de zero
+	        if (brinquedo.getValor() != 0) {
+	            ps.setFloat(5, brinquedo.getValor());
+	        } else {
+	            // Se for zero, obter o valor atual do banco de dados
+	            float valorAtual = obterValorAtualDoBancoDeDados(brinquedo.getCodigo());
+	            ps.setFloat(5, valorAtual);
+	        }
+
 	        if (brinquedo.getImage() != null && !brinquedo.getImage().isEmpty()) {
 	            ps.setString(6, brinquedo.getImage());
 	            ps.setInt(7, brinquedo.getCodigo());
 	        } else {
 	            ps.setInt(6, brinquedo.getCodigo());
 	        }
-	        
+
 	        ps.executeUpdate();
 	    } catch (SQLException sqle) {
 	        throw new Exception("Erro ao alterar dados " + sqle);
@@ -86,6 +118,25 @@ public class BrinquedoDAO {
 	        ConnectionFactory.closeConnection(conn, ps);
 	    }
 	}
+
+
+	private float obterValorAtualDoBancoDeDados(int codigo) throws Exception {
+	    float valorAtual = 0;
+
+	    try (Connection conn = ConnectionFactory.getConnection();
+	         PreparedStatement ps = conn.prepareStatement("SELECT valor FROM brinquedo WHERE codigo=?")
+	    ) {
+	        ps.setInt(1, codigo);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            valorAtual = rs.getFloat("valor");
+	        }
+	    }
+
+	    return valorAtual;
+	}
+
 
 	public void excluir(Brinquedo brinquedo) throws Exception {
 	    if (brinquedo == null)
@@ -212,23 +263,5 @@ public class BrinquedoDAO {
 	            ConnectionFactory.closeConnection(conn, ps, rs);
 	        }
 	    }
-	 public Map<String, Integer> contarBrinquedosPorMarca() throws Exception {
-	        try {
-	            ps = conn.prepareStatement("SELECT categoria, COUNT(*) as quantidade FROM brinquedo GROUP BY marca");
-	            rs = ps.executeQuery();
-	            Map<String, Integer> categoriasQuantidade = new HashMap<>();
-	            while (rs.next()) {
-	                String categoria = rs.getString("categoria");
-	                int quantidade = rs.getInt("quantidade");
-	                categoriasQuantidade.put(categoria, quantidade);
-	            }
-	            return categoriasQuantidade;
-	        } catch (SQLException sqle) {
-	            throw new Exception(sqle);
-	        } finally {
-	            ConnectionFactory.closeConnection(conn, ps, rs);
-	        }
-	    }
-
 }
 
